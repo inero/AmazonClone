@@ -11,7 +11,7 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import countryList from 'country-list';
-import {Auth, DataStore, API, graphqlOperation} from 'aws-amplify';
+// import {Auth, DataStore, API, graphqlOperation} from 'aws-amplify';
 import {useStripe} from '@stripe/stripe-react-native';
 import {Order, OrderProduct, CartProduct} from '../../models';
 import {createPaymentIntent} from '../../graphql/mutations';
@@ -48,9 +48,10 @@ const AddressScreen = () => {
   }, [clientSecret]);
 
   const fetchPaymentIntent = async () => {
-    const response = await API.graphql(
-      graphqlOperation(createPaymentIntent, {amount}),
-    );
+    //const response = await API.graphql(
+    //  graphqlOperation(createPaymentIntent, {amount}),
+    //);
+    const response = {};
     setClientSecret(response.data.createPaymentIntent.clientSecret);
   };
 
@@ -83,40 +84,18 @@ const AddressScreen = () => {
 
   const saveOrder = async () => {
     // get user details
-    const userData = await Auth.currentAuthenticatedUser();
+    // const userData = await Auth.currentAuthenticatedUser();
     // create a new order
-    const newOrder = await DataStore.save(
-      new Order({
-        userSub: userData.attributes.sub,
-        fullName: fullname,
-        phoneNumber: phone,
-        country,
-        city,
-        address,
-      }),
-    );
+
 
     // fetch all cart items
-    const cartItems = await DataStore.query(CartProduct, cp =>
-      cp.userSub('eq', userData.attributes.sub),
-    );
+    const cartItems = [];
 
     // attach all cart items to the order
-    await Promise.all(
-      cartItems.map(cartItem =>
-        DataStore.save(
-          new OrderProduct({
-            quantity: cartItem.quantity,
-            option: cartItem.option,
-            productID: cartItem.productID,
-            orderID: newOrder.id,
-          }),
-        ),
-      ),
-    );
+    await Promise.all(cartItems);
 
     // delete all cart items
-    await Promise.all(cartItems.map(cartItem => DataStore.delete(cartItem)));
+    await Promise.all(cartItems.map(cartItem => cartItem));
 
     // redirect home
     navigation.navigate('home');

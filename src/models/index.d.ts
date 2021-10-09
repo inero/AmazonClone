@@ -1,10 +1,10 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
+// import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
 
 
 export declare class PaymentIntent {
   readonly clientSecret: string;
-  constructor(init: ModelInit<PaymentIntent>);
+  constructor(init: <PaymentIntent>);
 }
 
 export declare class Product {
@@ -18,8 +18,8 @@ export declare class Product {
   readonly ratings?: number;
   readonly price: number;
   readonly oldPrice?: number;
-  constructor(init: ModelInit<Product>);
-  static copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
+  constructor(init: <Product>);
+  static copyOf(source: Product, mutator: (draft: <Product>) => <Product> | void): Product;
 }
 
 export declare class CartProduct {
@@ -29,8 +29,8 @@ export declare class CartProduct {
   readonly option?: string;
   readonly productID: string;
   readonly product?: Product;
-  constructor(init: ModelInit<CartProduct>);
-  static copyOf(source: CartProduct, mutator: (draft: MutableModel<CartProduct>) => MutableModel<CartProduct> | void): CartProduct;
+  constructor(init: <CartProduct>);
+  static copyOf(source: CartProduct, mutator: (draft: <CartProduct>) => <CartProduct> | void): CartProduct;
 }
 
 export declare class OrderProduct {
@@ -41,8 +41,8 @@ export declare class OrderProduct {
   readonly product?: Product;
   readonly orderID: string;
   readonly order?: Order;
-  constructor(init: ModelInit<OrderProduct>);
-  static copyOf(source: OrderProduct, mutator: (draft: MutableModel<OrderProduct>) => MutableModel<OrderProduct> | void): OrderProduct;
+  constructor(init: <OrderProduct>);
+  static copyOf(source: OrderProduct, mutator: (draft: <OrderProduct>) => <OrderProduct> | void): OrderProduct;
 }
 
 export declare class Order {
@@ -53,6 +53,6 @@ export declare class Order {
   readonly country?: string;
   readonly city?: string;
   readonly address?: string;
-  constructor(init: ModelInit<Order>);
-  static copyOf(source: Order, mutator: (draft: MutableModel<Order>) => MutableModel<Order> | void): Order;
+  constructor(init: <Order>);
+  static copyOf(source: Order, mutator: (draft: <Order>) => <Order> | void): Order;
 }

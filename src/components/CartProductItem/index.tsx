@@ -3,7 +3,7 @@ import {Image, View, Text} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import QuantitySelector from '../QuantitySelector';
 import styles from './styles';
-import {DataStore} from 'aws-amplify';
+// import {DataStore} from 'aws-amplify';
 
 import {CartProduct} from '../../models';
 
@@ -16,13 +16,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
   const {product, ...cartProduct} = cartItem;
 
   const updateQuantity = async (newQuantity: number) => {
-    const original = await DataStore.query(CartProduct, cartProduct.id);
-
-    await DataStore.save(
-      CartProduct.copyOf(original, updated => {
-        updated.quantity = newQuantity;
-      }),
-    );
+    const original = CartProduct.copyOf(original, updated => { updated.quantity = newQuantity; });
   };
 
   return (

@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {DataStore, Auth} from 'aws-amplify';
+// import {DataStore, Auth} from 'aws-amplify';
 
 import {Product, CartProduct} from '../../models';
 import CartProductItem from '../../components/CartProductItem';
@@ -21,15 +21,15 @@ const ShopingCartScreen = () => {
   const navigation = useNavigation();
 
   const fetchCartProducts = async () => {
-    const userData = await Auth.currentAuthenticatedUser();
+    // const userData = await Auth.currentAuthenticatedUser();
     // TODO query only my cart items
-    DataStore.query(CartProduct, cp =>
-      cp.userSub('eq', userData.attributes.sub),
-    ).then(setCartProducts);
+    // DataStore.query(CartProduct, cp =>
+    //   cp.userSub('eq', userData.attributes.sub),
+    // ).then(setCartProducts);
   };
 
   useEffect(() => {
-    fetchCartProducts();
+    // fetchCartProducts();
   }, []);
 
   useEffect(() => {
@@ -40,9 +40,7 @@ const ShopingCartScreen = () => {
     const fetchProducts = async () => {
       // query all products that are used in cart
       const products = await Promise.all(
-        cartProducts.map(cartProduct =>
-          DataStore.query(Product, cartProduct.productID),
-        ),
+        cartProducts.map(cartProduct => cartProduct),
       );
 
       // assign the products to the cart items
@@ -58,35 +56,14 @@ const ShopingCartScreen = () => {
   }, [cartProducts]);
 
   useEffect(() => {
-    const subscription = DataStore.observe(CartProduct).subscribe(msg =>
-      fetchCartProducts(),
-    );
-    return subscription.unsubscribe;
+    // const subscription = DataStore.observe(CartProduct).subscribe(msg =>
+    //  fetchCartProducts(),
+    // );
+    // return subscription.unsubscribe;
   }, []);
 
   useEffect(() => {
-    const subscriptions = cartProducts.map(cp =>
-      DataStore.observe(CartProduct, cp.id).subscribe(msg => {
-        if (msg.opType === 'UPDATE') {
-          setCartProducts(curCartProducts =>
-            curCartProducts.map(cp => {
-              if (cp.id !== msg.element.id) {
-                console.log('differnt id');
-                return cp;
-              }
-              return {
-                ...cp,
-                ...msg.element,
-              };
-            }),
-          );
-        }
-      }),
-    );
 
-    return () => {
-      subscriptions.forEach(sub => sub.unsubscribe());
-    };
   }, [cartProducts]);
 
   const totalPrice = cartProducts.reduce(

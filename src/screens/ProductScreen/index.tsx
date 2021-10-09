@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {Text, ScrollView, ActivityIndicator} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {useRoute, useNavigation} from '@react-navigation/native';
-import {DataStore, Auth} from 'aws-amplify';
+// import {DataStore, Auth} from 'aws-amplify';
 import {Product, CartProduct} from '../../models';
+import products from '../../data/products';
 
 import styles from './styles';
 import QuantitySelector from '../../components/QuantitySelector';
@@ -11,6 +12,7 @@ import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 
 const ProductScreen = () => {
+  const [products, setProducts] = useState<Product[] | []>(products);
   const [product, setProduct] = useState<Product | undefined>(undefined);
 
   const [selectedOption, setSelectedOption] = useState<string | undefined>(
@@ -25,7 +27,9 @@ const ProductScreen = () => {
     if (!route.params?.id) {
       return;
     }
-    DataStore.query(Product, route.params.id).then(setProduct);
+    const product = products.find(product => product.id === route.params.id);
+    setProduct(product);
+    // DataStore.query(Product, route.params.id).then(setProduct);
   }, [route.params?.id]);
 
   useEffect(() => {
@@ -35,20 +39,20 @@ const ProductScreen = () => {
   }, [product]);
 
   const onAddToCart = async () => {
-    const userData = await Auth.currentAuthenticatedUser();
+    // const userData = await Auth.currentAuthenticatedUser();
 
-    if (!product || !userData) {
+    if (!product) {
       return;
     }
 
     const newCartProduct = new CartProduct({
-      userSub: userData.attributes.sub,
+      userSub: 'test',
       quantity,
       option: selectedOption,
       productID: product.id,
     });
 
-    await DataStore.save(newCartProduct);
+    // await DataStore.save(newCartProduct);
     navigation.navigate('shoppingCart');
   };
 
