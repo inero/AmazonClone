@@ -1,57 +1,39 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import {Text, SafeAreaView, View, TextInput} from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
+import { SafeAreaView, View, Text } from 'react-native';
 
 const Stack = createStackNavigator();
 
-interface HeaderComponentProps {
-  searchValue: string;
-  setSearchValue: () => void;
-}
-
-const HeaderComponent = ({
-  searchValue,
-  setSearchValue,
-}: HeaderComponentProps) => {
+const HeaderComponent = () => {
   return (
-    <SafeAreaView style={{backgroundColor: '#22e3dd'}}>
+    <SafeAreaView style={{backgroundColor: '#e2e2e2'}}>
       <View
         style={{
           margin: 10,
           padding: 5,
-          backgroundColor: 'white',
           flexDirection: 'row',
           alignItems: 'center',
+          height: 200,
         }}>
-        <Feather name="search" size={20} />
-        <TextInput
-          style={{height: 40, marginLeft: 10}}
-          placeholder="Search..."
-          value={searchValue}
-          onChangeText={setSearchValue}
-        />
-      </View>
+        <Text></Text>
+      </View> 
     </SafeAreaView>
   );
 };
 
 const HomeStack = () => {
-  const [searchValue, setSearchValue] = useState('');
+
   return (
     <Stack.Navigator
       screenOptions={{
         header: () => (
-          <HeaderComponent
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-          />
+          <HeaderComponent/>
         ),
       }}>
       <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
-        {() => <HomeScreen searchValue={searchValue} />}
+        {() => <HomeScreen/>}
       </Stack.Screen>
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
     </Stack.Navigator>

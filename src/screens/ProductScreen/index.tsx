@@ -1,107 +1,68 @@
 import React, {useState, useEffect} from 'react';
 import {Text, ScrollView, ActivityIndicator} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import {useRoute, useNavigation} from '@react-navigation/native';
-// import {DataStore, Auth} from 'aws-amplify';
-import {Product, CartProduct} from '../../models';
-import products from '../../data/products';
+import {useRoute, useNavigation, RouteProp} from '@react-navigation/native';
+
+import { AppRouteParamList } from '../../API';
+import {CartProduct} from '../../models';
 
 import styles from './styles';
-import QuantitySelector from '../../components/QuantitySelector';
-import Button from '../../components/Button';
-import ImageCarousel from '../../components/ImageCarousel';
+import productsList from '../../data/products';
+
+interface ProductItemProps {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  icon: string;
+  amount: number;
+  type: string;
+  status?: boolean;
+}
 
 const ProductScreen = () => {
-  const [products, setProducts] = useState<Product[] | []>(products);
-  const [product, setProduct] = useState<Product | undefined>(undefined);
-
-  const [selectedOption, setSelectedOption] = useState<string | undefined>(
-    undefined,
-  );
-  const [quantity, setQuantity] = useState(1);
+  const [products, setProducts] = useState<ProductItemProps[]|undefined>(productsList);
+  const [transaction, setTransaction] = useState<ProductItemProps|null>(null);
 
   const navigation = useNavigation();
-  const route = useRoute();
+  const route = useRoute<RouteProp<AppRouteParamList, 'Home'>>();
+  
+  useEffect(() => {
+    setProducts(productsList);
+  }, []);
 
   useEffect(() => {
-    if (!route.params?.id) {
+    if (!route?.params?.id) {
       return;
     }
-    const product = products.find(product => product.id === route.params.id);
-    setProduct(product);
-    // DataStore.query(Product, route.params.id).then(setProduct);
-  }, [route.params?.id]);
-
-  useEffect(() => {
-    if (product?.options) {
-      setSelectedOption(product.options[0]);
-    }
-  }, [product]);
+    const transactionItem = products?.find((product: ProductItemProps) => product.id === route?.params?.id);
+    setTransaction(transactionItem as ProductItemProps);
+  }, [route?.params?.id]);
 
   const onAddToCart = async () => {
-    // const userData = await Auth.currentAuthenticatedUser();
-
-    if (!product) {
+    if (!transaction) {
       return;
     }
 
     const newCartProduct = new CartProduct({
-      userSub: 'test',
-      quantity,
-      option: selectedOption,
-      productID: product.id,
+      userSub: 'user',
+      productID: transaction.id,
     });
 
     // await DataStore.save(newCartProduct);
     navigation.navigate('shoppingCart');
   };
 
-  if (!product) {
-    return <ActivityIndicator />;
-  }
-
   return (
     <ScrollView style={styles.root}>
-      <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.title}>{transaction?.title}</Text>
 
-      {/* Image carousel */}
-      <ImageCarousel images={product.images} />
-
-      {/* Option selector */}
-      <Picker
-        selectedValue={selectedOption}
-        onValueChange={itemValue => setSelectedOption(itemValue)}>
-        {product.options.map(option => (
-          <Picker.Item label={option} value={option} />
-        ))}
-      </Picker>
-
-      {/* Price */}
       <Text style={styles.price}>
-        from ${product.price.toFixed(2)}
-        {product.oldPrice && (
-          <Text style={styles.oldPrice}> ${product.oldPrice.toFixed(2)}</Text>
-        )}
+        {transaction?.amount}
       </Text>
 
-      {/* Description */}
-      <Text style={styles.description}>{product.description}</Text>
+      <Text style={styles.description}>{transaction?.description}</Text>
 
-      {/* Qunatiti selector */}
-      <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-
-      {/* Button */}
-      <Button
-        text={'Add To Cart'}
-        onPress={onAddToCart}
-        containerStyles={{backgroundColor: '#e3c905'}}
-      />
-      <Button
-        text={'Buy Now'}
-        onPress={() => {
-          console.warn('Buy now');
-        }}
-      />
     </ScrollView>
   );
 };

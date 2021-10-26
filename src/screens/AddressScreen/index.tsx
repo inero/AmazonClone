@@ -9,12 +9,12 @@ import {
   Platform,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
 import countryList from 'country-list';
-// import {Auth, DataStore, API, graphqlOperation} from 'aws-amplify';
-import {useStripe} from '@stripe/stripe-react-native';
-import {Order, OrderProduct, CartProduct} from '../../models';
-import {createPaymentIntent} from '../../graphql/mutations';
+
+// import { AppRouteParamList } from '../../API';
+// import {Order, OrderProduct, CartProduct} from '../../models';
+// import {createPaymentIntent} from '../../graphql/mutations';
 
 import Button from '../../components/Button';
 import styles from './styles';
@@ -32,10 +32,10 @@ const AddressScreen = () => {
   const [city, setCity] = useState('');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
-  const {initPaymentSheet, presentPaymentSheet} = useStripe();
+  // const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const navigation = useNavigation();
-  const route = useRoute();
-  const amount = Math.floor(route.params?.totalPrice * 100 || 0);
+  // const route = useRoute<RouteProp<AppRouteParamList, 'Address'>>();
+  // const amount = Math.floor(route?.params?.totalPrice * 100 || 0);
 
   useEffect(() => {
     fetchPaymentIntent();
@@ -51,35 +51,35 @@ const AddressScreen = () => {
     //const response = await API.graphql(
     //  graphqlOperation(createPaymentIntent, {amount}),
     //);
-    const response = {};
-    setClientSecret(response.data.createPaymentIntent.clientSecret);
+    // const response = {};
+    // setClientSecret(response.data.createPaymentIntent.clientSecret);
   };
 
   const initializePaymentSheet = async () => {
     if (!clientSecret) {
       return;
     }
-    const {error} = await initPaymentSheet({
-      paymentIntentClientSecret: clientSecret,
-    });
-    console.log('success');
-    if (error) {
-      Alert.alert(error);
-    }
+    // const {error} = await initPaymentSheet({
+    //   paymentIntentClientSecret: clientSecret,
+    // });
+    // console.log('success');
+    // if (error) {
+    //   Alert.alert(error);
+    // }
   };
 
   const openPaymentSheet = async () => {
     if (!clientSecret) {
       return;
     }
-    const {error} = await presentPaymentSheet({clientSecret});
+    // const {error} = await presentPaymentSheet({clientSecret});
 
-    if (error) {
-      Alert.alert(`Error code: ${error.code}`, error.message);
-    } else {
-      saveOrder();
-      Alert.alert('Success', 'Your payment is confirmed!');
-    }
+    // if (error) {
+    //   Alert.alert(`Error code: ${error.code}`, error.message);
+    // } else {
+    //   saveOrder();
+    //   Alert.alert('Success', 'Your payment is confirmed!');
+    // }
   };
 
   const saveOrder = async () => {
@@ -89,13 +89,13 @@ const AddressScreen = () => {
 
 
     // fetch all cart items
-    const cartItems = [];
+    // const cartItems = [];
 
-    // attach all cart items to the order
-    await Promise.all(cartItems);
+    // // attach all cart items to the order
+    // await Promise.all(cartItems);
 
-    // delete all cart items
-    await Promise.all(cartItems.map(cartItem => cartItem));
+    // // delete all cart items
+    // await Promise.all(cartItems.map(cartItem => cartItem));
 
     // redirect home
     navigation.navigate('home');

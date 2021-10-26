@@ -1,10 +1,7 @@
-// import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
 
 export declare class PaymentIntent {
   readonly clientSecret: string;
-  constructor(init: <PaymentIntent>);
+  constructor(init: any);
 }
 
 export declare class Product {
@@ -18,8 +15,8 @@ export declare class Product {
   readonly ratings?: number;
   readonly price: number;
   readonly oldPrice?: number;
-  constructor(init: <Product>);
-  static copyOf(source: Product, mutator: (draft: <Product>) => <Product> | void): Product;
+  constructor(init: any);
+  static copyOf(source: Product, mutator: (draft: any) => any | void): Product;
 }
 
 export declare class CartProduct {
@@ -29,8 +26,8 @@ export declare class CartProduct {
   readonly option?: string;
   readonly productID: string;
   readonly product?: Product;
-  constructor(init: <CartProduct>);
-  static copyOf(source: CartProduct, mutator: (draft: <CartProduct>) => <CartProduct> | void): CartProduct;
+  constructor(init: any);
+  static copyOf(source: CartProduct, mutator: (draft: any) => any | void): CartProduct;
 }
 
 export declare class OrderProduct {
@@ -41,8 +38,8 @@ export declare class OrderProduct {
   readonly product?: Product;
   readonly orderID: string;
   readonly order?: Order;
-  constructor(init: <OrderProduct>);
-  static copyOf(source: OrderProduct, mutator: (draft: <OrderProduct>) => <OrderProduct> | void): OrderProduct;
+  constructor(init: any);
+  static copyOf(source: OrderProduct, mutator: (draft: any) => any | void): OrderProduct;
 }
 
 export declare class Order {
@@ -53,6 +50,6 @@ export declare class Order {
   readonly country?: string;
   readonly city?: string;
   readonly address?: string;
-  constructor(init: <Order>);
-  static copyOf(source: Order, mutator: (draft: <Order>) => <Order> | void): Order;
+  constructor(init: any);
+  static copyOf(source: Order, mutator: (draft: any) => any | void): Order;
 }

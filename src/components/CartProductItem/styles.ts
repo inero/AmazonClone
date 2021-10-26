@@ -16,10 +16,6 @@ const styles = StyleSheet.create({
     height: 150,
     resizeMode: 'contain',
   },
-  rightContainer: {
-    padding: 10,
-    flex: 3,
-  },
   title: {
     fontSize: 18,
   },
@@ -42,6 +38,47 @@ const styles = StyleSheet.create({
   },
   quantityContainer: {
     margin: 5,
+  },
+
+
+
+  leftContainer: {
+    padding: 10,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 50,
+  },
+  mainContainer: {
+    padding: 10,
+    flex: 5,
+    alignItems: 'flex-start',
+  },
+  rightContainer: {
+    padding: 10,
+    alignItems: 'flex-end',
+    flex: 3,
+    marginRight: 0,
+    flexDirection: 'column',
+  },
+  amount: {
+    paddingTop: 1,
+    flexDirection: 'row',
+  },
+  icon: {
+    paddingTop: 1,
+    flexDirection: 'row',
+    backgroundColor: '#fff4',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 12,
+  },
+  status: {
+    fontSize: 12,
+    fontWeight: 'normal',
+    textDecorationLine: 'line-through',
   },
 });
 

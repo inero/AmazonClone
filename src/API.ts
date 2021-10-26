@@ -2,6 +2,11 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type AppRouteParamList = {
+  Home: { id: string } | undefined,
+  Address: { totalPrice: number } | undefined,
+}
+
 export type PaymentIntent = {
   __typename: "PaymentIntent",
   clientSecret?: string,

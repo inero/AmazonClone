@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-// import {Auth} from 'aws-amplify';
 import Button from '../../components/Button';
 
 const MenuScreen = () => {

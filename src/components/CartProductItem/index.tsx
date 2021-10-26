@@ -1,58 +1,57 @@
-import React, {useState} from 'react';
-import {Image, View, Text} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import QuantitySelector from '../QuantitySelector';
+import React from 'react';
+import { View, Text} from 'react-native';
 import styles from './styles';
-// import {DataStore} from 'aws-amplify';
-
-import {CartProduct} from '../../models';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface CartProductItemProps {
-  cartItem: CartProduct;
+  item: {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+    icon: string;
+    amount: number;
+    type: string;
+    status: boolean;
+  };
 }
 
-const CartProductItem = ({cartItem}: CartProductItemProps) => {
-  console.log(cartItem);
-  const {product, ...cartProduct} = cartItem;
-
-  const updateQuantity = async (newQuantity: number) => {
-    const original = CartProduct.copyOf(original, updated => { updated.quantity = newQuantity; });
-  };
+const CartProductItem = ({item}: CartProductItemProps) => {
+  console.log(item);
+  const {title, ...bill} = item;
 
   return (
     <View style={styles.root}>
       <View style={styles.row}>
-        <Image style={styles.image} source={{uri: product.image}} />
-        <View style={styles.rightContainer}>
-          <Text style={styles.title} numberOfLines={3}>
-            {product.title}
+        <View style={styles.leftContainer}>
+          {
+            item.type === 'INCOME' ? 
+            <MaterialIcons name='account-balance-wallet' size={40} color="green"/> :
+            <MaterialIcons name='payments' size={40} color="red"/>
+          }
+          
+        </View>
+        <View style={styles.mainContainer}>
+          <Text style={styles.title} numberOfLines={1}>
+            {item.title}
           </Text>
-          {/* Ratings */}
-          <View style={styles.ratingsContainer}>
-            {[0, 0, 0, 0, 0].map((el, i) => (
-              <FontAwesome
-                key={`${product.id}-${i}`}
-                style={styles.star}
-                name={i < Math.floor(product.avgRating) ? 'star' : 'star-o'}
-                size={18}
-                color={'#e47911'}
-              />
-            ))}
-            <Text>{product.ratings}</Text>
-          </View>
-          <Text style={styles.price}>
-            from ${product.price}
-            {product.oldPrice && (
-              <Text style={styles.oldPrice}> ${product.oldPrice}</Text>
-            )}
+          <Text style={styles.description} numberOfLines={2}>
+            {item.description}
           </Text>
         </View>
-      </View>
-      <View style={styles.quantityContainer}>
-        <QuantitySelector
-          quantity={cartProduct.quantity}
-          setQuantity={updateQuantity}
-        />
+        <View style={styles.rightContainer}>
+          <View style={styles.icon}>
+            {
+              item.status ? 
+              <Text><MaterialIcons name="do-not-disturb-on" size={15} /> </Text> : 
+              <Text><MaterialIcons name="do-not-disturb-off" size={15} /> </Text>
+            } 
+            <Text>{item.amount}</Text>
+          </View>
+          <View style={styles.amount}>
+            <Text>{item.date}</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
