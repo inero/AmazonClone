@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
 
-const PromotionScreen = () => {
+const ReportScreen = () => {
   const [proProducts, setProProducts] = useState(undefined);
   const navigation = useNavigation();
 
@@ -30,4 +30,4 @@ const PromotionScreen = () => {
   );
 };
 
-export default PromotionScreen;
+export default ReportScreen;

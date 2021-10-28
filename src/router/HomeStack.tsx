@@ -2,40 +2,16 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import { SafeAreaView, View, Text } from 'react-native';
+import TransactionScreen from '../screens/TransactionScreen';
 
 const Stack = createStackNavigator();
 
-const HeaderComponent = () => {
-  return (
-    <SafeAreaView style={{backgroundColor: '#e2e2e2'}}>
-      <View
-        style={{
-          margin: 10,
-          padding: 5,
-          flexDirection: 'row',
-          alignItems: 'center',
-          height: 200,
-        }}>
-        <Text></Text>
-      </View> 
-    </SafeAreaView>
-  );
-};
-
 const HomeStack = () => {
-
   return (
-    <Stack.Navigator
-      screenOptions={{
-        header: () => (
-          <HeaderComponent/>
-        ),
-      }}>
-      <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
-        {() => <HomeScreen/>}
-      </Stack.Screen>
-      <Stack.Screen component={ProductScreen} name="ProductDetails" />
+    <Stack.Navigator>
+      <Stack.Screen component={HomeScreen} name="Dashboard" />
+      <Stack.Screen component={TransactionScreen} name="TransactionScreen" />
+      <Stack.Screen component={ProductScreen} name="TransactionDetails" />
     </Stack.Navigator>
   );
 };

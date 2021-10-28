@@ -4,6 +4,8 @@
 
 export type AppRouteParamList = {
   Home: { id: string } | undefined,
+  Dashboard: { id: string } | undefined,
+  Transaction: { id: string } | undefined,
   Address: { totalPrice: number } | undefined,
 }
 

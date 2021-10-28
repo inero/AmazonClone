@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { AsyncStorage, YellowBox } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { navigationRef } from './RootNavigation';
-// import { urlRedirect } from '../utils/Tools';
 import BottomTabNav from './bottomTabNav';
+import { IntroStackScreen } from './StoneNavigator';
 import { Logout } from '../reducers';
 
 const Root = createStackNavigator();
@@ -39,6 +39,7 @@ const Router = () => {
     <NavigationContainer ref={navigationRef}>
       <Root.Navigator screenOptions={{headerShown: false}}>
         <Root.Screen component={BottomTabNav} name="HomeTabs" />
+        <Root.Screen component={IntroStackScreen} name="IntroTabs" />
       </Root.Navigator>
     </NavigationContainer>
   );

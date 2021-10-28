@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginVertical: 1,
     padding: 1,
-    borderWidth: 1,
-    borderColor: '#e2e2e2',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
   },
   leftContainer: {
     padding: 10,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff4',
   },
   title: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   description: {

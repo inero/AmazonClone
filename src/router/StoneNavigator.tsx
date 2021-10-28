@@ -1,25 +1,33 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { useSelector } from 'react-redux';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-  TransitionPresets,
-} from '@react-navigation/stack';
+// import { Text } from 'react-native';
+// import { useSelector } from 'react-redux';
+import { createStackNavigator } from '@react-navigation/stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
-import Colors from '../utils/Colors';
-import CustomDrawer from './CustomDrawer';
+// import Colors from '../utils/Colors';
+import LoginScreen from '../screens/auth/LoginScreen';
+import SignupScreen from '../screens/auth/SignupScreen';
+import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 
-// const IntroStack = createStackNavigator();
-// export const IntroStackScreen = () => (
-//   <IntroStack.Navigator>
-//     <IntroStack.Screen
-//       name='IntroScreen'
-//       component={IntroScreen}
-//       options={{ headerShown: false }}
-//     />
-//   </IntroStack.Navigator>
-// );
+const IntroStack = createStackNavigator();
+export const IntroStackScreen = () => (
+  <IntroStack.Navigator>
+    <IntroStack.Screen
+      name='LoginScreen'
+      component={LoginScreen}
+      options={{ headerShown: false }}
+    />
+    <IntroStack.Screen
+      name='SignupScreen'
+      component={SignupScreen}
+      options={{ headerShown: false }}
+    />
+    <IntroStack.Screen
+      name='ForgotPasswordScreen'
+      component={ForgotPasswordScreen}
+      options={{ headerShown: false }}
+    />
+  </IntroStack.Navigator>
+);
 
 // const LoginStack = createStackNavigator();
 // export const LoginStackScreen = () => (

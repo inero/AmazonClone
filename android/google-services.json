@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "326721745385",
+    "project_id": "new-cart-13342",
+    "storage_bucket": "new-cart-13342.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326721745385:android:66e95b8daa44f89f899b78",
+        "android_client_info": {
+          "package_name": "com.exptra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326721745385-uodla5u4tr7uq0dbspi0o1druqrqtc5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClrjPZ1RwB3pYCsXu-EyT7i5SBCUZxV0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326721745385-uodla5u4tr7uq0dbspi0o1druqrqtc5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

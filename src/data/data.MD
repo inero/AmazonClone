@@ -1,47 +1,21 @@
-# Dummy Data for Amazon Clone
-
-## Product Images
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleanarchitecture.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleancode.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/imac1.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/imac2.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/keyboard1.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/keyboard2.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse2.jpg
-
-- https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse3.jpg
+# Dummy Data for Exptra App
 
 ## Files
-- **products.ts**: A list of products having:
-  - id
-  - title
-  - image
-  - avgRating
-  - ratings
-  - price
-  - oldPrice (optional)
-- **product.ts**: Product details
-  - id
-  - title
-  - *description*
-  - image
-  - *images* (array of images)
-  - *options* (array if possible variation/options)
-  - avgRating
-  - ratings
-  - price
-  - oldPrice (optional)
-- **cart.ts**: Items in the cart
-  - id
-  - item
-  - quantity
-  - option (selected option)
+
+- **message.ts**: A list of messages having:
+  - address: "6505551212",
+  - body: "Dear Customer, your Account Number XXXXXX6377 has been -credited by Rs 215.000 being DBT/DBTL funds transfer on 19/05/2015 - -CENTRAL BANK OF INDIA",
+  - creator: "com.google.android.apps.messaging",
+  - date: 1635335547469,
+  - date_sent: 1635335547000,
+  - error_code: 0,
+  - locked: 0,
+  - protocol: 0,
+  - read: 1,
+  - reply_path_present: 0,
+  - seen: 1,
+  - status: -1,
+  - sub_id: 1,
+  - thread_id: 3,
+  - type: 1,
+  - \_id: 3,

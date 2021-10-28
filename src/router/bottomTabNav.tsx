@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-import MenuScreen from '../screens/MenuScreen';
+import MenuScreen from '../screens/TransactionScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HomeStack from './HomeStack';
 import ShoppingCartStack from './ShoppingCartStack';
@@ -39,7 +39,7 @@ const BottomTabNav = () => {
         name="report"
         options={{
           tabBarIcon: ({color}) => (
-            <MaterialIcons name="stacked-bar-chart" color={color} size={25} />
+            <MaterialIcons name="insert-chart" color={color} size={25} />
           ),
         }}
       />
